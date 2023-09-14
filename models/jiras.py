@@ -10,31 +10,31 @@ class Jira(db.Model):
     description = db.Column(db.Text)
     jira_progress = db.Column(db.Text, nullable=True)
 
-    #FK
-    equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    # #FK
+    # equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
-    # Relationships between tables
-    equipments = db.relationship(
-        "Equipments",
-        back_populates="jiras",
-        # cascade="all, delete"
-    )
+    # # Relationships between tables
+    # equipments = db.relationship(
+    #     "Equipments",
+    #     back_populates="jiras",
+    #     # cascade="all, delete"
+    # )
 
-    users = db.relationship(
-        "Users",
-        back_populates="jiras",
-        # cascade="all, delete"
-    )
+    # users = db.relationship(
+    #     "Users",
+    #     back_populates="jiras",
+    #     # cascade="all, delete"
+    # )
 
-    services = db.relationship(
-        "Services",
-        back_populates="jiras",
-        # cascade="all, delete"
-    )
+    # services = db.relationship(
+    #     "Services",
+    #     back_populates="jiras",
+    #     # cascade="all, delete"
+    # )
 
-    jiras = db.relationship(
-        "Jiras",
-        back_populates="jiras",
-        # cascade="all, delete"
-    )
+    # jiras = db.relationship(
+    #     "Jiras",
+    #     back_populates="jiras",
+    #     # cascade="all, delete"
+    # )

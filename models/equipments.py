@@ -8,40 +8,39 @@ class Equipment(db.Model):
     type_equipment = db.Column(db.Text)
     description = db.Column(db.Text)
     
-    # FK 
+    # # FK 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    locations_id = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
+    # locations_id = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
 
-    # Relationships between tables
+    # # Relationships between tables
     users = db.relationship(
-        "Users",
+        "User",
         back_populates="equipments",
         # cascade="all, delete"
     )
 
-    services = db.relationship(
-        "services",
-        back_populates="equipments",
-        # cascade="all, delete"
-    )
+    # services = db.relationship(
+    #     "Service",
+    #     back_populates="equipments",
+    #     # cascade="all, delete"
+    # )
 
-    parts = db.relationship(
-        "parts",
-        back_populates="equipments",
-        # cascade="all, delete"
-    )
+    # parts = db.relationship(
+    #     "Part",
+    #     back_populates="equipments",
+    #     # cascade="all, delete"
+    # )
 
+    # locations = db.relationship(
+    #     "Location",
+    #     back_populates="equipments",
+    #     # cascade="all, delete"
+    # )
 
-    locations = db.relationship(
-        "Locations",
-        back_populates="equipments",
-        # cascade="all, delete"
-    )
-
-    jiras = db.relationship(
-        "Jiras",
-        back_populates="equipments",
-        # cascade="all, delete"
-    )
+    # jiras = db.relationship(
+    #     "Jira",
+    #     back_populates="equipments",
+    #     # cascade="all, delete"
+    # )
 
 

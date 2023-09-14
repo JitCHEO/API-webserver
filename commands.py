@@ -145,13 +145,15 @@ def seed_db():
     equipment1 = Equipment(
         equipment_number = "SSR552XT",
         type_equipment = "XT",
-        description = "",
+        description = "qweq",
+        user_id=user1.id
     )
 
     equipment2 = Equipment(
         equipment_number = "SSR787XT",
         type_equipment = "FX",
-        description = "",
+        description = "qweqwe",
+        user_id=user1.id
     )
 
     # add equipments object to db

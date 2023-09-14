@@ -68,6 +68,7 @@ def update_equipments(equipment_id: int):
         equipment.equipment_number = equipment_json["equipment_number"]
         equipment.type_equipment = equipment_json["type_equipment"]
         equipment.description = equipment_json["description"]
+        equipment.user_id = equipment_json["user_id"]
         db.session.commit()
         return jsonify(equipment_schema.dump(equipment))
 
