@@ -12,7 +12,7 @@ class Jira(db.Model):
 
     # #FK
     # equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
-    # user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # # Relationships between tables
     # equipments = db.relationship(
@@ -21,11 +21,11 @@ class Jira(db.Model):
     #     # cascade="all, delete"
     # )
 
-    # users = db.relationship(
-    #     "Users",
-    #     back_populates="jiras",
-    #     # cascade="all, delete"
-    # )
+    users = db.relationship(
+        "User",
+        back_populates="jiras",
+        # cascade="all, delete"
+    )
 
     # services = db.relationship(
     #     "Services",

@@ -119,8 +119,8 @@ def seed_db():
         created_at = datetime.now(),
         service_completion = datetime.now(),
         description = "Completed at laydown area",
-        jira_progress = "In Progress"
-        # user_id = user1.id,
+        jira_progress = "In Progress",
+        user_id = user1.id
     )
 
     jira2 = Jira(
@@ -128,8 +128,8 @@ def seed_db():
         created_at = datetime.now(),
         service_completion = datetime.now(),
         description = "Replaced REM",
-        jira_progress = "In Progress"
-        # user_id = user1.id,
+        jira_progress = "In Progress",
+        user_id = user1.id
     )
 
     # add jiras object to db

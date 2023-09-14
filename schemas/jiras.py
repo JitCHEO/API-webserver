@@ -16,6 +16,7 @@ class JiraSchema(ma.Schema):
             "service_completion",
             "description",
             "jira_progress",
+            "user_id",
         )
 
     # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))

@@ -70,6 +70,7 @@ def update_jiras(jira_id: int):
         jira.service_completion = jira_json["service_completion"]
         jira.description = jira_json["description"]
         jira.jira_progress = jira_json["jira_progress"]
+        jira.user_id = jira_json["user_id"]
         db.session.commit()
         return jsonify(jira_schema.dump(jira))
 

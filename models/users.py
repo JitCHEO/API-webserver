@@ -14,15 +14,9 @@ class User(db.Model):
         # cascade="all, delete"
     )
 
-    # locations = db.relationship(
-    #     "Location",
-    #     back_populates="users",
-    #     # cascade="all, delete"
-    # )
-
-    # jiras = db.relationship(
-    #     "Jira",
-    #     back_populates="users",
-    #     # cascade="all, delete"
-    # )
+    jiras = db.relationship(
+        "Jira",
+        back_populates="users",
+        # cascade="all, delete"
+    )
 
