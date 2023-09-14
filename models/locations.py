@@ -9,12 +9,15 @@ class Location(db.Model):
     site_airport = db.Column(db.Text)
     state = db.Column(db.Text)
     
+    #FK
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     # equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
 
-    # users = db.relationship(
-    #     "Users",
-    #     back_populates="locations"
-    # )
+    # Tables relationships
+    users = db.relationship(
+        "User",
+        back_populates="locations"
+    )
 
     # equipments = db.relationship(
     #     "Equipments",

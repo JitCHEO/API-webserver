@@ -94,7 +94,7 @@ def seed_db():
         visit_date = datetime.now(),
         site_airport = "Emerald",
         state = "QLD",
-        # user_id = user1.id,
+        user_id = user2.id
     )
 
     location2 = Location(
@@ -102,7 +102,7 @@ def seed_db():
         visit_date = datetime.now(),
         site_airport = "Emerald",
         state = "QLD",
-        # user_id = user1.id,
+        user_id = user1.id
     )
 
     # add locations object to db
@@ -129,7 +129,7 @@ def seed_db():
         service_completion = datetime.now(),
         description = "Replaced REM",
         jira_progress = "In Progress",
-        user_id = user1.id
+        user_id = user2.id
     )
 
     # add jiras object to db

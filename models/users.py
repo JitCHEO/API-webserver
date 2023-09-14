@@ -8,6 +8,7 @@ class User(db.Model):
     password = db.Column(db.Text, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
 
+    # Tables relationships
     equipments = db.relationship(
         "Equipment",
         back_populates="users",
@@ -20,3 +21,8 @@ class User(db.Model):
         # cascade="all, delete"
     )
 
+    locations = db.relationship(
+        "Location",
+        back_populates="users",
+        # cascade="all, delete"
+    )

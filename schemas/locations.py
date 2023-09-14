@@ -15,6 +15,7 @@ class LocationSchema(ma.Schema):
             "visit_date", 
             "site_airport", 
             "state",
+            "user_id"
         )
 
 
