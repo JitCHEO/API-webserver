@@ -10,8 +10,7 @@ class Equipment(db.Model):
     
     # # FK 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    # locations_id = db.Column(db.Integer, db.ForeignKey("locations.id"))
-  
+     
 
     # # Relationships between tables
     user = db.relationship(
@@ -19,11 +18,11 @@ class Equipment(db.Model):
         back_populates="equipments"
     )
 
-    # services = db.relationship(
-    #     "Service",
-    #     back_populates="equipments",
-    #     # cascade="all, delete"
-    # )
+    services = db.relationship(
+        "Service",
+        back_populates="equipments",
+        # cascade="all, delete"
+    )
 
     parts = db.relationship(
         "Part",

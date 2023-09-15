@@ -15,11 +15,10 @@ class ServiceSchema(ma.Schema):
             "service_date",
             "description",
             "state", 
+            "equipments"
         )    
-
-    # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))
-
-
+    equipments = fields.Nested("EquipmentSchema")
+    
 service_schema = ServiceSchema()
 services_schema = ServiceSchema(many=True)
 

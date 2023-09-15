@@ -10,15 +10,14 @@ class Service(db.Model):
     state = db.Column(db.Text)
 
 #    #FK
-#     equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
-#     part_id = db.Column(db.Integer, db.ForeignKey("parts.id"), nullable=False)
+    equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"))
 
 #     # Relationships between tables
-#     equipments = db.relationship(
-#         "Equipments",
-#         back_populates="services",
-#         # cascade="all, delete"
-#     )
+    equipments = db.relationship(
+        "Equipment",
+        back_populates="services",
+        # cascade="all, delete"
+    )
 
 
 

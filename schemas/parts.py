@@ -14,12 +14,11 @@ class PartSchema(ma.Schema):
             "part_name", 
             "purchase_date", 
             "description", 
-            "amount_spent"
+            "amount_spent",
+            "equipments"
         )
-
-    # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))
-
-
+    equipments = fields.Nested("EquipmentSchema")
+    
 
 part_schema = PartSchema()
 parts_schema = PartSchema(many=True)
