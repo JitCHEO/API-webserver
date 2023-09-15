@@ -13,7 +13,9 @@ class EquipmentSchema(ma.Schema):
             "type_equipment",
             "description",
             "user_id",
+            "user"
         )
+    user = fields.Nested("UserSchema")
 
     # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))
 

@@ -11,15 +11,16 @@ class Jira(db.Model):
     jira_progress = db.Column(db.Text, nullable=True)
 
     # #FK
-    # equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    
 
     # # Relationships between tables
-    # equipments = db.relationship(
-    #     "Equipments",
-    #     back_populates="jiras",
-    #     # cascade="all, delete"
-    # )
+    equipments = db.relationship(
+        "Equipment",
+        back_populates="jiras",
+        # cascade="all, delete"
+    )
 
     users = db.relationship(
         "User",
@@ -27,14 +28,3 @@ class Jira(db.Model):
         # cascade="all, delete"
     )
 
-    # services = db.relationship(
-    #     "Services",
-    #     back_populates="jiras",
-    #     # cascade="all, delete"
-    # )
-
-    # jiras = db.relationship(
-    #     "Jiras",
-    #     back_populates="jiras",
-    #     # cascade="all, delete"
-    # )

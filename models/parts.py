@@ -11,25 +11,13 @@ class Part(db.Model):
     amount_spent = db.Column(db.Integer)
     
     # #FK
-    # equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
-    # service_id = db.Column(db.Integer, db.ForeignKey("services.id"), nullable=False)
+    equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"))
+    
 
     # # Relationships between tables
-    # equipments = db.relationship(
-    #     "Equipments",
-    #     back_populates="parts",
-    #     # cascade="all, delete"
-    # )
-
-    # services = db.relationship(
-    #     "Services",
-    #     back_populates="parts",
-    #     # cascade="all, delete"
-    # )
-
-    # jiras = db.relationship(
-    #     "Jiras",
-    #     back_populates="parts",
-    #     # cascade="all, delete"
-    # )
+    equipments = db.relationship(
+        "Equipment",
+        back_populates="parts",
+        # cascade="all, delete"
+    )
 

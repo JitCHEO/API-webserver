@@ -88,13 +88,36 @@ def seed_db():
     # commit db for parts
     db.session.commit()
 
-    # create locations
+    # create equipments
+    equipment1 = Equipment(
+        equipment_number = "SSR552XT",
+        type_equipment = "XT",
+        description = "qweq",
+        user_id = user1.id
+    )
+
+    equipment2 = Equipment(
+        equipment_number = "SSR787XT",
+        type_equipment = "FX",
+        description = "qweqwe",
+        user_id=user1.id
+    )
+
+    # add equipments object to db
+    db.session.add_all([
+        equipment1, equipment2,
+    ])
+
+    # commit db for equipments
+    db.session.commit()
+
+        # create locations
     location1 = Location(
         site = "Capcoal",
         visit_date = datetime.now(),
         site_airport = "Emerald",
         state = "QLD",
-        user_id = user2.id
+        equipment_id = equipment1.id
     )
 
     location2 = Location(
@@ -102,7 +125,7 @@ def seed_db():
         visit_date = datetime.now(),
         site_airport = "Emerald",
         state = "QLD",
-        user_id = user1.id
+        equipment_id = equipment1.id
     )
 
     # add locations object to db
@@ -120,7 +143,7 @@ def seed_db():
         service_completion = datetime.now(),
         description = "Completed at laydown area",
         jira_progress = "In Progress",
-        user_id = user1.id
+        equipment_id = equipment1.id
     )
 
     jira2 = Jira(
@@ -129,7 +152,7 @@ def seed_db():
         service_completion = datetime.now(),
         description = "Replaced REM",
         jira_progress = "In Progress",
-        user_id = user2.id
+        equipment_id = equipment2.id
     )
 
     # add jiras object to db
@@ -141,28 +164,6 @@ def seed_db():
     db.session.commit()
     
 
-    # create equipments
-    equipment1 = Equipment(
-        equipment_number = "SSR552XT",
-        type_equipment = "XT",
-        description = "qweq",
-        user_id=user1.id
-    )
-
-    equipment2 = Equipment(
-        equipment_number = "SSR787XT",
-        type_equipment = "FX",
-        description = "qweqwe",
-        user_id=user1.id
-    )
-
-    # add equipments object to db
-    db.session.add_all([
-        equipment1, equipment2,
-    ])
-
-    # commit db for equipments
-    db.session.commit()
     
 
     # log if seed is succeeded

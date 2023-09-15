@@ -20,17 +20,6 @@ class Service(db.Model):
 #         # cascade="all, delete"
 #     )
 
-#     parts = db.relationship(
-#         "Parts",
-#         back_populates="services",
-#         # cascade="all, delete"
-#     )
-
-#     jiras = db.relationship(
-#         "Jiras",
-#         back_populates="services",
-#         # cascade="all, delete"
-#     )
 
 
 

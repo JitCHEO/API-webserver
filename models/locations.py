@@ -10,16 +10,11 @@ class Location(db.Model):
     state = db.Column(db.Text)
     
     #FK
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    # equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"), nullable=False)
+    equipment_id = db.Column(db.Integer, db.ForeignKey("equipments.id"))
+
 
     # Tables relationships
-    users = db.relationship(
-        "User",
-        back_populates="locations"
+    equipments = db.relationship(
+        "Equipment",
+        back_populates="locations",
     )
-
-    # equipments = db.relationship(
-    #     "Equipments",
-    #     back_populates="locations",
-    # )

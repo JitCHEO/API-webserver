@@ -15,12 +15,11 @@ class LocationSchema(ma.Schema):
             "visit_date", 
             "site_airport", 
             "state",
-            "user_id"
+            "equipments"
         )
 
-
-    # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))
-
+    equipments = fields.Nested("EquipmentSchema")
+    
 
 location_schema = LocationSchema()
 locations_schema = LocationSchema(many=True)

@@ -11,18 +11,11 @@ class User(db.Model):
     # Tables relationships
     equipments = db.relationship(
         "Equipment",
-        back_populates="users",
-        # cascade="all, delete"
+        back_populates="user"
     )
 
     jiras = db.relationship(
         "Jira",
-        back_populates="users",
-        # cascade="all, delete"
+        back_populates="users"
     )
 
-    locations = db.relationship(
-        "Location",
-        back_populates="users",
-        # cascade="all, delete"
-    )

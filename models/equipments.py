@@ -10,13 +10,13 @@ class Equipment(db.Model):
     
     # # FK 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    # locations_id = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
+    # locations_id = db.Column(db.Integer, db.ForeignKey("locations.id"))
+  
 
     # # Relationships between tables
-    users = db.relationship(
+    user = db.relationship(
         "User",
-        back_populates="equipments",
-        # cascade="all, delete"
+        back_populates="equipments"
     )
 
     # services = db.relationship(
@@ -25,22 +25,22 @@ class Equipment(db.Model):
     #     # cascade="all, delete"
     # )
 
-    # parts = db.relationship(
-    #     "Part",
-    #     back_populates="equipments",
-    #     # cascade="all, delete"
-    # )
+    parts = db.relationship(
+        "Part",
+        back_populates="equipments",
+        # cascade="all, delete"
+    )
 
-    # locations = db.relationship(
-    #     "Location",
-    #     back_populates="equipments",
-    #     # cascade="all, delete"
-    # )
+    locations = db.relationship(
+        "Location",
+        back_populates="equipments",
+        cascade="all, delete"
+    )
 
-    # jiras = db.relationship(
-    #     "Jira",
-    #     back_populates="equipments",
-    #     # cascade="all, delete"
-    # )
+    jiras = db.relationship(
+        "Jira",
+        back_populates="equipments",
+        # cascade="all, delete"
+    )
 
 
