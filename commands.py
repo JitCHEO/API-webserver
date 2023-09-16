@@ -22,7 +22,8 @@ def seed_db():
     # create User objects
     user1 = User(
         email = "jit@abraham.com.au",
-        password = bcrypt.generate_password_hash("123456").decode("utf-8")
+        password = bcrypt.generate_password_hash("123456").decode("utf-8"), 
+        is_admin = True
     )
     user2 = User(
         email = "long@cooper.com.au",
