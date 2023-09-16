@@ -41,20 +41,20 @@ def login_user():
 
     return jsonify({"message": "success", **user_schema.dump(user)})
 
-#user that is already login
-@auths.route("/already-login", methods=["POST"])
-@jwt_required()
-def already_login_user():
-    current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
+# #user that is already login
+# @auths.route("/already-login", methods=["POST"])
+# @jwt_required()
+# def already_login_user():
+#     current_user = get_jwt_identity()
+#     return jsonify(logged_in_as=current_user), 200
 
-    email = request.json["email"]
-    password = request.json["password"]
+    # email = request.json["email"]
+    # password = request.json["password"]
 
-    q = db.select(User).filter_by(email=email)
-    user = db.session.scalar(q)
+    # q = db.select(User).filter_by(email=email)
+    # user = db.session.scalar(q)
     
-    if not user or not bcrypt.check_password_hash(user.password, password):
-        return abort(401, description="Incorrect username and password!")
+    # if not user or not bcrypt.check_password_hash(user.password, password):
+    #     return abort(401, description="Incorrect username and password!")
 
-    return jsonify({"message": "success", **user_schema.dump(user)})
+    # return jsonify({"message": "success", **user_schema.dump(user)})

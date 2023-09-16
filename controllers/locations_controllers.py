@@ -69,7 +69,6 @@ def update_locations(location_id: int):
         location.visit_date = location_json["visit_date"]
         location.site_airport = location_json["site_airport"]
         location.state = location_json["state"]
-        location.user_id = location_json["user_id"]
         db.session.commit()
         return jsonify(location_schema.dump(location))
 
