@@ -67,6 +67,7 @@ def update_users(user_id: int):
         user_json = user_schema.load(request.json)
         user.email = user_json["email"]
         user.password = user_json["password"]
+        user.admin = user_json["admin"]
         db.session.commit()
         return jsonify(user_schema.dump(user))
 

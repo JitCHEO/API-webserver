@@ -42,11 +42,11 @@ def login_user():
     return jsonify({"message": "success", **user_schema.dump(user)})
 
 # #user that is already login
-# @auths.route("/already-login", methods=["POST"])
-# @jwt_required()
-# def already_login_user():
-#     current_user = get_jwt_identity()
-#     return jsonify(logged_in_as=current_user), 200
+@auths.route("/already-login", methods=["POST"])
+@jwt_required()
+def already_login_user():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
 
     # email = request.json["email"]
     # password = request.json["password"]
