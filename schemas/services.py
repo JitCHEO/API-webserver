@@ -6,7 +6,6 @@ class ServiceSchema(ma.Schema):
     type_service = fields.Str(required=True)
     service_date = fields.Date()
     description = fields.Str()
-    # state = fields.String(load_default='Not Started', validate=validate.OneOf(["Not Started", "In Progress", "Completed"]))
 
     class Meta:
         fields =(

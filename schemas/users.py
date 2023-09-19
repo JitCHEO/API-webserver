@@ -15,7 +15,6 @@ class UserSchema(ma.Schema):
             "admin",
         ) 
 
-    # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))
 
 
 user_schema = UserSchema()

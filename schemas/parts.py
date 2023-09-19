@@ -6,7 +6,6 @@ class PartSchema(ma.Schema):
     purchase_date = fields.Date()
     description = fields.Str()
     amount_spent = fields.Float()
-    # state = fields.String(load_default='Not Started', validate=validate.OneOf(["Not Started", "In Progress", "Completed"]))
 
     class Meta:
         fields = (

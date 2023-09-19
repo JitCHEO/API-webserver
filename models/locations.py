@@ -18,3 +18,8 @@ class Location(db.Model):
         "Equipment",
         back_populates="locations",
     )
+
+    inductions = db.relationship(
+        "Equipment",
+        back_populates="location",
+    )

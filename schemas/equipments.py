@@ -1,5 +1,5 @@
 from main import ma
-from marshmallow import fields, validate
+from marshmallow import fields
 
 class EquipmentSchema(ma.Schema):
     equipment_number = fields.Str(required=True)
@@ -17,7 +17,7 @@ class EquipmentSchema(ma.Schema):
         )
     user = fields.Nested("UserSchema")
 
-    # tasks = fields.List(fields.Nested("ExpenseSchema", exclude=("user",)))
+
 
 
 equipment_schema = EquipmentSchema()

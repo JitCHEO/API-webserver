@@ -1,5 +1,5 @@
 from main import ma
-from marshmallow import fields, validate
+from marshmallow import fields
 
 class LocationSchema(ma.Schema):
     site = fields.Str(required=True)
