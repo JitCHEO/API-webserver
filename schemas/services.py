@@ -16,7 +16,7 @@ class ServiceSchema(ma.Schema):
             "state", 
             "equipments"
         )    
-    equipments = fields.Nested("EquipmentSchema")
+    equipments = fields.Nested("EquipmentSchema", exclude=["user"])
     
 service_schema = ServiceSchema()
 services_schema = ServiceSchema(many=True)

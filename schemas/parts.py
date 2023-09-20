@@ -16,7 +16,7 @@ class PartSchema(ma.Schema):
             "amount_spent",
             "equipments"
         )
-    equipments = fields.Nested("EquipmentSchema")
+    equipments = fields.Nested("EquipmentSchema", exclude=["user"])
     
 
 part_schema = PartSchema()

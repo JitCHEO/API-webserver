@@ -18,7 +18,7 @@ class LocationSchema(ma.Schema):
             "equipments"
         )
 
-    equipments = fields.Nested("EquipmentSchema")
+    equipments = fields.Nested("EquipmentSchema", exclude=["user"])
     
 
 location_schema = LocationSchema()

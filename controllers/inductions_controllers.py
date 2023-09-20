@@ -29,7 +29,7 @@ def get_induction(induction_id: int):
     if response:
         return jsonify(response)
 
-    return jsonify(message=f"Induction with id=`{equipment_id}` not found")
+    return jsonify(message=f"Induction with id=`{induction_id}` not found")
 
     
 # /inductions/<id> -> delete induction with id

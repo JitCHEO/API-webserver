@@ -1,5 +1,5 @@
 from main import ma
-from marshmallow import fields, validate
+from marshmallow import fields
 
 class InductionSchema(ma.Schema):
     expiry_date = fields.Date()
@@ -9,14 +9,13 @@ class InductionSchema(ma.Schema):
 
     class Meta:
         fields = (
-            "id",
             "expiry_date",
             "documents_required",
             "description",
             "locations"
         )
 
-    locations = fields.Nested("LocationSchema")
+    locations = fields.Nested("LocationSchema", exclude=["equipments"])
 
 
 

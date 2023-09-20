@@ -3,7 +3,7 @@ from datetime import datetime
 import time
 
 from main import db, bcrypt
-from models import User, Service, Part, Location, Jira, Equipment
+from models import User, Service, Part, Location, Jira, Equipment, Induction
 
 db_commands = Blueprint("db", __name__)
 
@@ -166,8 +166,29 @@ def seed_db():
 
     # commit db for jiras
     db.session.commit()
-    
 
+    # create inductions
+    induction1 = Induction(
+        expiry_date = datetime.now(),
+        documents_required = "Drivers license, Medical, DA" ,
+        description = "Online induction required, site familiarisation follow after",
+        location_id = location1.id
+    )
+
+    # induction1 = Induction(
+    #     expiry_date = datetime.now(),
+    #     documents_required = "Drivers license, Medical, DA" ,
+    #     description = "Online induction required, site familiarisation follow after",
+    #     location_id = location1.id
+    # )
+
+    # add inductions object to db
+    db.session.add_all([
+        induction1, 
+    ])
+
+    # commit db for inductions
+    db.session.commit()
     
 
     # log if seed is succeeded

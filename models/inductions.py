@@ -15,10 +15,9 @@ class Induction(db.Model):
     
 
     # # Relationships between tables
-    location = db.relationship(
-        "Induction",
+    locations = db.relationship(
+        "Location",
         back_populates="inductions",
-        # cascade="all, delete"
     )
     
 

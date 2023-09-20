@@ -4,6 +4,7 @@ from controllers.parts_controllers import parts
 from controllers.locations_controllers import locations
 from controllers.jiras_controllers import jiras
 from controllers.equipments_controllers import equipments
+from controllers.inductions_controllers import inductions
 from controllers.auth_controllers import auths
 
 
@@ -15,5 +16,6 @@ registered_controllers = (
     locations,
     jiras,
     equipments,
+    inductions,
     auths,
 )

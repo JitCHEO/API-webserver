@@ -20,6 +20,6 @@ class Location(db.Model):
     )
 
     inductions = db.relationship(
-        "Equipment",
-        back_populates="location",
+        "Induction",
+        back_populates="locations",
     )

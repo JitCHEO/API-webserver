@@ -20,26 +20,22 @@ class Equipment(db.Model):
 
     services = db.relationship(
         "Service",
-        back_populates="equipments",
-        # cascade="all, delete"
+        back_populates="equipments"
     )
 
     parts = db.relationship(
         "Part",
-        back_populates="equipments",
-        # cascade="all, delete"
+        back_populates="equipments"
     )
 
     locations = db.relationship(
         "Location",
-        back_populates="equipments",
-        cascade="all, delete"
+        back_populates="equipments"
     )
 
     jiras = db.relationship(
         "Jira",
-        back_populates="equipments",
-        # cascade="all, delete"
+        back_populates="equipments"
     )
 
 
