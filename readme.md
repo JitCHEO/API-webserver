@@ -73,7 +73,7 @@
     
 
 ## R6 An ERD for your app
-- 
+- ![ERD API](../T2A2_API_project/ERD%20.png)
 
 ## R7 Detail any third party services that your app will use
 - Authentication Service
@@ -92,7 +92,9 @@
         - One user can have many equipments to maintain at a single site.
         - One user can be associated with multiple JIRAs.
 - Service model
-    - 
+    - Representing services that can be provided or requested.
+    - Relationships:
+        - Each service will be associated with the equipments which are located at different sites.
 - Part model
     - Representing parts of an equipments.
     - Relationships:
@@ -100,11 +102,17 @@
 - Location model
     - Representing a location or a place.
     - Relationships:
-        - 
+        - Each Location will have multiple equipments.
 - JIRA model
-    - 
+    - Representing issues or task that need to be track & follow up.
+    - Relationship:
+        - Each JIRA will associated with users.
+        - Each JIRA will be associated with 1 or more equipments.
 - Induction model
-    - 
+    - Representing process of inducting a user to be at a specific location
+    - Relationship:
+        - Each induction will be associated to each site.
+        - Each induction will have the require documents & expiry date of the induction.
 - Equipment model
     - Representing physical equipments or assets.
     - Relationships:
@@ -113,7 +121,39 @@
 
 
 ## R9 Discuss the database relations to be implemented in your application
-- 
+- One-to-Many(1:N) Relationships:
+    - Location to Induction
+        - A location can have multiple inductions required.
+        - Implementing location_id as Foreign Key in the Inductions model, and referencing the tables.
+- Many-to-Many(N:N)
+    - User to Equipment
+        - Many user can look after multiple equipments
+        - This is achieved by having user_id as the ForeignKey in the 'Equipment' model and referencing the tables.
+    - User to JIRAs
+        - Many user can access to multiple JIRAs.
+        - This is achieved by having user_id as Foreignkey in the 'JIRA' model and referencing the tables.
+    - Equipment to Part
+        - Many equipment will require many parts.
+        - This is achieved by having equipment_id as Foreignkey in the 'Part' model and referencing the tables.
+    - Equipment to Service
+        - Many equipment will require different servicing.
+        - This is achieved by having equipment_id as Foreignkey in the 'Service' model and referencing the tables.
+
 
 ## R10 Describe the way tasks are allocated and tracked in your project 
-- 
+#### Task Allocation
+- Identification
+    - Identify & define task. Breaking down to-do list into smaller, doable tasks.
+- Prioritization
+    - Prioritize task based on importance & urgency. Some models, schemas & controllers rely on each other for it to work.
+- Deadlines
+    - Assign a due date for each task to be completed so that i will not be overwhelmed closer to due date.
+
+
+#### Task Tracking
+- Management Tool
+    - i utilize project management tracking tools such as Atlassian to create & manage tasks. 
+- Dependencies
+    - Keeping track of tasks to ensure that tasks are completed in the right order. 
+- Reviewing of Task
+    - Review completed task periodically to ensure that it meet the projects standards & requirements.
