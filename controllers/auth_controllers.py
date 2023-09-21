@@ -48,13 +48,3 @@ def already_login_user():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
 
-    # email = request.json["email"]
-    # password = request.json["password"]
-
-    # q = db.select(User).filter_by(email=email)
-    # user = db.session.scalar(q)
-    
-    # if not user or not bcrypt.check_password_hash(user.password, password):
-    #     return abort(401, description="Incorrect username and password!")
-
-    # return jsonify({"message": "success", **user_schema.dump(user)})

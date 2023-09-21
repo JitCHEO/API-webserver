@@ -18,6 +18,5 @@ class Part(db.Model):
     equipments = db.relationship(
         "Equipment",
         back_populates="parts",
-        # cascade="all, delete"
     )
 

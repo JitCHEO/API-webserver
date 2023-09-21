@@ -15,8 +15,7 @@ class Service(db.Model):
 #     # Relationships between tables
     equipments = db.relationship(
         "Equipment",
-        back_populates="services",
-        # cascade="all, delete"
+        back_populates="services"
     )
 
 

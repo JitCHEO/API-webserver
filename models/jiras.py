@@ -18,13 +18,11 @@ class Jira(db.Model):
     # # Relationships between tables
     equipments = db.relationship(
         "Equipment",
-        back_populates="jiras",
-        # cascade="all, delete"
+        back_populates="jiras"
     )
 
     users = db.relationship(
         "User",
-        back_populates="jiras",
-        # cascade="all, delete"
+        back_populates="jiras"
     )
 

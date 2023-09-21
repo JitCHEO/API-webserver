@@ -113,8 +113,7 @@ def seed_db():
     # commit db for locations
     db.session.commit()
 
-        # create parts 
-    # time_1_day = int(time.time()) + (24 * 60 )
+    # create parts 
     part1 = Part(
         part_name = "Fuel filters",
         purchase_date = datetime.now(),
