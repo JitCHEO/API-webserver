@@ -11,8 +11,7 @@ class EquipmentSchema(ma.Schema):
             "id",
             "equipment_number",
             "type_equipment",
-            "description",
-            "user"
+            "description"
         )
     user = fields.Nested("UserSchema")
 

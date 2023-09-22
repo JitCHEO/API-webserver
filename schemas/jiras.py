@@ -10,16 +10,17 @@ class JiraSchema(ma.Schema):
 
     class Meta:
         fields = (
-            "id",
+            # "id",
             "issue_title",
             "created_at",
             "service_completion",
             "description",
             "jira_progress",
-            "equipments"
+            "equipments",
+            "user_id"
         )
 
-    equipments = fields.Nested("EquipmentSchema")
+    equipments = fields.Nested("EquipmentSchema", excludes=["user_id"])
 
 
 

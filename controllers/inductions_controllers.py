@@ -69,6 +69,7 @@ def update_inductions(induction_id: int):
         induction.documents_required = induction_json["documents_required"]
         induction.description = induction_json["description"]
         induction.location = induction_json["location"]
+        induction.induction_progress = induction_json["induction_progress"]
         db.session.commit()
         return jsonify(induction_schema.dump(induction))
 

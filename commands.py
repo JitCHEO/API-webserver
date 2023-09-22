@@ -41,15 +41,13 @@ def seed_db():
     equipment1 = Equipment(
         equipment_number = "SSR552XT",
         type_equipment = "XT",
-        description = "qweq",
-        user_id = user1.id
+        description = "qweq"  
     )
 
     equipment2 = Equipment(
         equipment_number = "SSR787XT",
         type_equipment = "FX",
-        description = "qweqwe",
-        user_id=user1.id
+        description = "qweqwe"
     )
 
     # add equipments object to db
@@ -146,7 +144,8 @@ def seed_db():
         service_completion = datetime.now(),
         description = "Completed at laydown area",
         jira_progress = "In Progress",
-        equipment_id = equipment1.id
+        equipment_id = equipment1.id,
+        user_id = user1.id
     )
 
     jira2 = Jira(
@@ -155,7 +154,8 @@ def seed_db():
         service_completion = datetime.now(),
         description = "Replaced REM",
         jira_progress = "In Progress",
-        equipment_id = equipment2.id
+        equipment_id = equipment2.id,
+        user_id = user1.id
     )
 
     # add jiras object to db
@@ -171,19 +171,21 @@ def seed_db():
         expiry_date = datetime.now(),
         documents_required = "Drivers license, Medical, DA" ,
         description = "Online induction required, site familiarisation follow after",
+        induction_progress = "Not Started",
         location_id = location1.id
     )
 
-    # induction1 = Induction(
-    #     expiry_date = datetime.now(),
-    #     documents_required = "Drivers license, Medical, DA" ,
-    #     description = "Online induction required, site familiarisation follow after",
-    #     location_id = location1.id
-    # )
+    induction2 = Induction(
+        expiry_date = datetime.now(),
+        documents_required = "Medical" ,
+        description = "Site familiarisation required",
+        induction_progress = "Completed",
+        location_id = location2.id
+    )
 
     # add inductions object to db
     db.session.add_all([
-        induction1, 
+        induction1, induction2,
     ])
 
     # commit db for inductions

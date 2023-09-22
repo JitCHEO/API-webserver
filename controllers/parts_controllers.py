@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError 
 
 from main import db
 from models.parts import Part
@@ -49,12 +50,17 @@ def delete_part(part_id: int):
 # /parts -> Creating a part
 @parts.route("/", methods=["POST"])
 def create_parts():
-    part_json = part_schema.load(request.json)
-    part = Part(**part_json)
-    db.session.add(part)
-    db.session.commit()
+    try:
+        part_json = part_schema.load(request.json)
+        part = Part(**part_json)
+        db.session.add(part)
+        db.session.commit()
 
-    return jsonify(part_schema.dump(part))
+        return jsonify(part_schema.dump(part)), 201
+    
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback the transaction
+        return jsonify({"error": "User creation failed due to a existing part"}), 400
 
 # /parts/<id> -> Updating a part with id
 @parts.route("/<int:part_id>", methods=["PUT"])

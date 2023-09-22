@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError 
 
 from main import db
 from models.users import User
@@ -49,12 +50,18 @@ def delete_user(user_id: int):
 # /users -> Creating a user
 @users.route("/", methods=["POST"])
 def create_users():
-    user_json = user_schema.load(request.json)
-    user = User(**user_json)
-    db.session.add(user)
-    db.session.commit()
+    try:
+        user_json = user_schema.load(request.json)
+        user = User(**user_json)
+        db.session.add(user)
+        db.session.commit()
 
-    return jsonify(user_schema.dump(user))
+        return jsonify(user_schema.dump(user)), 201
+
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback the transaction
+        return jsonify({"error": "User creation failed due to a existing user"}), 400
+
 
 # /users/<id> -> Updating a user with id
 @users.route("/<int:user_id>", methods=["PUT"])

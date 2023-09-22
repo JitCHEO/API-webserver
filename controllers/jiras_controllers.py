@@ -46,11 +46,6 @@ def delete_jira(jira_id: int):
     jira = db.session.scalar(q)
     response = jira_schema.dump(jira)
 
-    # the old without jwt_required
-    # q = db.select(Jira).filter_by(id=jira_id)
-    # jira = db.session.scalar(q)
-    # response = jira_schema.dump(jira)
-
     if response:
         db.session.delete(jira)
         db.session.commit()
