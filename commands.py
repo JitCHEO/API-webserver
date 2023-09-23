@@ -180,7 +180,7 @@ def seed_db():
         documents_required = "Medical" ,
         description = "Site familiarisation required",
         induction_progress = "Completed",
-        location_id = location2.id
+        location_id = location1.id
     )
 
     # add inductions object to db

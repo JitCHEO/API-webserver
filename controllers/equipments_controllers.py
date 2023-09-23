@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError 
 
 from main import db
 from models.equipments import Equipment
@@ -49,12 +50,18 @@ def delete_equipment(equipment_id: int):
 # /equipments -> Creating a equipment
 @equipments.route("/", methods=["POST"])
 def create_equipments():
-    equipment_json = equipment_schema.load(request.json)
-    equipment = Equipment(**equipment_json)
-    db.session.add(equipment)
-    db.session.commit()
+    try:
+        equipment_json = equipment_schema.load(request.json)
+        equipment = Equipment(**equipment_json)
+        db.session.add(equipment)
+        db.session.commit()
 
-    return jsonify(equipment_schema.dump(equipment))
+        return jsonify(equipment_schema.dump(equipment))
+    
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback the transaction
+        return jsonify({"error": "Equipments creation failed due to a existing equipment"}), 400
+
 
 # /equipments/<id> -> Updating a equipment with id
 @equipments.route("/<int:equipment_id>", methods=["PUT"])
@@ -68,7 +75,6 @@ def update_equipments(equipment_id: int):
         equipment.equipment_number = equipment_json["equipment_number"]
         equipment.type_equipment = equipment_json["type_equipment"]
         equipment.description = equipment_json["description"]
-        equipment.user_id = equipment_json["user_id"]
         db.session.commit()
         return jsonify(equipment_schema.dump(equipment))
 

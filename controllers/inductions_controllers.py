@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError 
 
 from main import db
 from models.inductions import Induction
@@ -49,12 +50,17 @@ def delete_induction(induction_id: int):
 # /inductions -> Creating a induction
 @inductions.route("/", methods=["POST"])
 def create_inductions():
-    induction_json = induction_schema.load(request.json)
-    induction = Induction(**induction_json)
-    db.session.add(induction)
-    db.session.commit()
+    try:
+        induction_json = induction_schema.load(request.json)
+        induction = Induction(**induction_json)
+        db.session.add(induction)
+        db.session.commit()
 
-    return jsonify(induction_schema.dump(induction))
+        return jsonify(induction_schema.dump(induction))
+    
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback the transaction
+        return jsonify({"error": "Inductions creation failed due to a existing induction"}), 400
 
 # /inductions/<id> -> Updating a induction with id
 @inductions.route("/<int:induction_id>", methods=["PUT"])
@@ -68,7 +74,6 @@ def update_inductions(induction_id: int):
         induction.expiry_date = induction_json["expiry_date"]
         induction.documents_required = induction_json["documents_required"]
         induction.description = induction_json["description"]
-        induction.location = induction_json["location"]
         induction.induction_progress = induction_json["induction_progress"]
         db.session.commit()
         return jsonify(induction_schema.dump(induction))

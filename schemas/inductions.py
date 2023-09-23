@@ -14,7 +14,7 @@ class InductionSchema(ma.Schema):
             "expiry_date",
             "documents_required",
             "description",
-            "locations",
+            "location",
             "induction_progress"
 
         )
