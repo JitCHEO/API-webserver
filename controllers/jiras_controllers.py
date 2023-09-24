@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError 
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from main import db
@@ -57,17 +58,22 @@ def delete_jira(jira_id: int):
 @jiras.route("/", methods=["POST"])
 @jwt_required()
 def create_jiras():
-    email = get_jwt_identity()
-    statement = db.select(User).filter_by(email=email)
-    user = db.session.scalar(statement)
+    try: 
+        email = get_jwt_identity()
+        statement = db.select(User).filter_by(email=email)
+        user = db.session.scalar(statement)
 
-    jira_json = jira_schema.load(request.json)
-    jira = Jira(**jira_json)
-    jira.user_id = user.id
-    db.session.add(jira)
-    db.session.commit()
+        jira_json = jira_schema.load(request.json)
+        jira = Jira(**jira_json)
+        # jira.user_id = user.id
+        db.session.add(jira)
+        db.session.commit()
 
-    return jsonify(jira_schema.dump(jira))
+        return jsonify(jira_schema.dump(jira))
+    
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback the transaction
+        return jsonify({"error": "JIRA creation failed due to a existing JIRA"}), 400
 
 # /jiras/<id> -> Updating a jira with id
 @jiras.route("/<int:jira_id>", methods=["PUT"])

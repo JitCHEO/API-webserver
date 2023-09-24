@@ -10,7 +10,7 @@ class JiraSchema(ma.Schema):
 
     class Meta:
         fields = (
-            # "id",
+            "id",
             "issue_title",
             "created_at",
             "service_completion",
