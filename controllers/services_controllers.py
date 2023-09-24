@@ -16,6 +16,10 @@ def key_error_handler(e):
 # /Service -> list of Service
 @services.route("/", methods=["GET"])
 def get_services():
+    """
+    Get a list of all services.
+    :return: JSON response with a list of services.
+    """
     q = db.select(Service)
     services = db.session.scalars(q)
     return jsonify(services_schema.dump(services))

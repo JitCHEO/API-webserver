@@ -7,15 +7,27 @@ from models.users import User
 from schemas.users import user_schema, users_schema
 
 # /user
+# Create a Flask Blueprint for user-related routes
 users = Blueprint("user", __name__, url_prefix="/users")
 
+# Error handler for validation errors
 @users.errorhandler(ValidationError)
 def key_error_handler(e):
+    """
+    Handle validation errors and return a JSON response with a 400 status code.
+    return: JSON response with an error message.
+    """
     return jsonify({"error": f"Validation Error - `{e}`"}), 400
 
 # /users -> list of users
 @users.route("/", methods=["GET"])
 def get_users():
+    """
+    Get a list of all users.
+
+    Returns:
+    Flask Response: JSON response containing the list of users.
+    """
     q = db.select(User)
     users = db.session.scalars(q)
     return jsonify(users_schema.dump(users))

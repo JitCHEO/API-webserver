@@ -4,15 +4,17 @@ class Equipment(db.Model):
     __tablename__ = "equipments"
 
     id = db.Column(db.Integer, primary_key=True)
+    # Equipment identification number
     equipment_number = db.Column(db.Text)
+    # Type of equipment that the customer have
     type_equipment = db.Column(db.Text)
     description = db.Column(db.Text)
     
-    # # FK 
+    # FK 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
      
 
-    # # Relationships between tables
+    # Relationships between tables
     user = db.relationship(
         "User",
         back_populates="equipments"

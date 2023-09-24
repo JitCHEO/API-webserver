@@ -9,11 +9,13 @@ db_commands = Blueprint("db", __name__)
 
 @db_commands.cli.command("create")
 def create_db():
+    # Create db tables based on defined models
     db.create_all()
     print("Tables are created")
 
 @db_commands.cli.command("drop")
 def drop_db():
+    # Drop(delete) all db tables
     db.drop_all()
     print("Tables are dropped")
 

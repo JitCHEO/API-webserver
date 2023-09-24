@@ -6,9 +6,9 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from config import app_config
 
-bcrypt = Bcrypt()
-db = SQLAlchemy()
-ma = Marshmallow()
+bcrypt = Bcrypt() # Extension for password hashing
+db = SQLAlchemy() # Extension for db operations
+ma = Marshmallow() # Exntension for data serialization/deserialization
 
 def init_app():
     # create flask app instance
