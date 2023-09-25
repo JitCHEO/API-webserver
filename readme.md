@@ -77,16 +77,26 @@
 
 ## R7 Detail any third party services that your app will use
 - bycrypt
-    - Password hashing library that enhances the security of user authentication by securely hashing passwords before keeping them in the databases. Is used in our application to securely manage and store user passwords.
+    - Password hashing algorithm to used to securely stored user passwords in the database.
+    - Helps to protect user data by ensuring that passwords are not stored in plaintext & are difficult to reverse-engineer.
+    - Is used for securely hashing & verifying user passwords during registration & login processes.
 
 - PostgreSQL
-    - Open-source relational database management system(RDBMS). Primary data store for storing & managing different types of data, such as user profiles & application-related information.
+    - Open-source relational database management system(RDBMS) that use as the primary database for my application.
+    - Provides robust data storage & retrival capabilities.
+    - Help me to stores user data & other essential information needed to run the application.
     - Visit [PostgreSQL](https://www.postgresql.org/) for more informations.
 
 
 - JSON Web Tokens(JWT)
     - Used in my application to handle authentication & authorization processes, allowing users to securely access specific resources & endpoints.
+    - To ensure that only authorized user can access certains parts of the application.
     - Visit [JWT](https://jwt.io/introduction/) for more informations.
+    
+- JWT identity
+    - Simplifies user identity management using JWT tokens. Making it easier to integrate JWT-based security into application
+    - Used to streamline user identity management, ensuring users are properly authenticated & authorized based on JWT tokens.
+
 
 ## R8 Describe your projects models in terms of the relationships they have with each other
 - User model
