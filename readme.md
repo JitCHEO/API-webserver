@@ -76,14 +76,17 @@
 - ![ERD API](../T2A2_API_project/ERD%20.png)
 
 ## R7 Detail any third party services that your app will use
-- Authentication Service
-    - My app will require user authentication, i might need need to use a third-party authentication servuce such as AuthO for user management & authentication.
-- Hosting Databases
-    - Using Amazon Relational Database Service(RDS) or Google Cloud SQL to manage app's databases
-- File Storage
-    - Amazon S3, Google Cloud Storage or Dropbox are the third-party file storage services that i can utilize.
-- Notification services
-    - Firebase Cloud Messaging(FCM) to sent push notifications for upcoming-services.
+- bycrypt
+    - Password hashing library that enhances the security of user authentication by securely hashing passwords before keeping them in the databases. Is used in our application to securely manage and store user passwords.
+
+- PostgreSQL
+    - Open-source relational database management system(RDBMS). Primary data store for storing & managing different types of data, such as user profiles & application-related information.
+    - Visit [PostgreSQL](https://www.postgresql.org/) for more informations.
+
+
+- JSON Web Tokens(JWT)
+    - Used in my application to handle authentication & authorization processes, allowing users to securely access specific resources & endpoints.
+    - Visit [JWT](https://jwt.io/introduction/) for more informations.
 
 ## R8 Describe your projects models in terms of the relationships they have with each other
 - User model
