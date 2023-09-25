@@ -2,7 +2,7 @@
 # Set the Flask run port to 4000
 FLASK_RUN_PORT=4000
 
-'main' is the name of the module, and 'init_app' is the function that initializes the Flask app.
+#'main' is the name of the module, and 'init_app' is the function that initializes the Flask app.
 FLASK_APP=main:init_app
 
 # Setting Flask environment to 'development'

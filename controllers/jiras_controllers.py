@@ -43,6 +43,9 @@ def delete_jira(jira_id: int):
     statement = db.select(User).filter_by(email=email)
     user = db.session.scalar(statement)
 
+    if user is None:
+        return jsonify(message="User not found"), 404
+    
     q = db.select(Jira).filter_by(user_id=user.id)
     jira = db.session.scalar(q)
     response = jira_schema.dump(jira)

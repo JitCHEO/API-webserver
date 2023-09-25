@@ -66,13 +66,14 @@ def create_users():
         user_json = user_schema.load(request.json)
         user = User(**user_json)
         db.session.add(user)
-        db.session.commit()
+        db.session.commit() 
 
         return jsonify(user_schema.dump(user)), 201
-
+    
     except IntegrityError as e:
         db.session.rollback()  # Rollback the transaction
-        return jsonify({"error": "User creation failed due to a existing user"}), 400
+        print(f"Error creating user: {e}")
+        return jsonify({"error": "User creation failed due to an existing user"}), 400
 
 
 # /users/<id> -> Updating a user with id

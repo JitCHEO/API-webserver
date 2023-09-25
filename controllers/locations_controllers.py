@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow.exceptions import ValidationError
+from sqlalchemy.exc import IntegrityError
 
 from main import db
 from models.locations import Location
@@ -49,12 +50,18 @@ def delete_location(location_id: int):
 # /locations -> Creating a location
 @locations.route("/", methods=["POST"])
 def create_locations():
-    location_json = location_schema.load(request.json)
-    location = Location(**location_json)
-    db.session.add(location)
-    db.session.commit()
+    try:
+        location_json = location_schema.load(request.json)
+        location = Location(**location_json)
+        db.session.add(location)
+        db.session.commit()
 
-    return jsonify(location_schema.dump(location))
+        return jsonify(location_schema.dump(location))
+    
+    except IntegrityError as e:
+        db.session.rollback()  # Rollback the transaction
+        return jsonify({"error": "User creation failed due to a existing service"}), 400
+
 
 # /locations/<id> -> Updating a location with id
 @locations.route("/<int:location_id>", methods=["PUT"])
