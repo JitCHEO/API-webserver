@@ -39,23 +39,32 @@ def get_jira(jira_id: int):
 @jiras.route("/<int:jira_id>", methods=["DELETE"])
 @jwt_required()
 def delete_jira(jira_id: int):
-    email = get_jwt_identity()
-    statement = db.select(User).filter_by(email=email)
-    user = db.session.scalar(statement)
+    try:
+        # Verify the user based on the JWT token
+        email = get_jwt_identity()
+        statement = db.select(User).filter_by(email=email)
+        user = db.session.scalar(statement)
 
-    if user is None:
-        return jsonify(message="User not found"), 404
-    
-    q = db.select(Jira).filter_by(user_id=user.id)
-    jira = db.session.scalar(q)
-    response = jira_schema.dump(jira)
+        if user is None:
+            return jsonify(message="User not found"), 404
 
-    if response:
-        db.session.delete(jira)
-        db.session.commit()
-        return jsonify(message=f"Jira with id=`{jira_id}` deleted successfully!")
+        # Fetch the Jira by its ID
+        q = db.select(Jira).filter_by(id=jira_id)
+        jira = db.session.scalar(q)
 
-    return jsonify(message=f"Cannot delete jira with id=`{jira_id}`. Not found")
+        if jira is not None:
+            # Check if the Jira belongs to the user
+            if jira.user_id == user.id:
+                db.session.delete(jira)
+                db.session.commit()
+                return jsonify(message=f"Jira with id=`{jira_id}` deleted successfully!")
+            else:
+                return jsonify(message=f"You do not have permission to delete this Jira."), 403
+        else:
+            return jsonify(message=f"Jira with id=`{jira_id}` not found"), 404
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # /jiras -> Creating a jira
 @jiras.route("/", methods=["POST"])
@@ -68,7 +77,8 @@ def create_jiras():
 
         jira_json = jira_schema.load(request.json)
         jira = Jira(**jira_json)
-        # jira.user_id = user.id
+        # setting user_id for newly created JIRA
+        jira.user_id = user.id
         db.session.add(jira)
         db.session.commit()
 
