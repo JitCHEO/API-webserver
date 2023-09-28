@@ -35,8 +35,11 @@ def get_users():
 # /users/<id> -> show user with id
 @users.route("/<int:user_id>", methods=["GET"])
 def get_user(user_id: int):
+    # Query database to select user record where 'id' column matches the provided 'user_id'
     q = db.select(User).filter_by(id=user_id)
+    # Execute the query, retrieve a single result using the scalar() method.
     user = db.session.scalar(q)
+    # Serialize 'user' object using 'user_schema'
     response = user_schema.dump(user)
 
     if response:
@@ -63,15 +66,20 @@ def delete_user(user_id: int):
 @users.route("/", methods=["POST"])
 def create_users():
     try:
+        # Load JSON data from request using user_schema
         user_json = user_schema.load(request.json)
+        # User object being created using the loaded JSON data
         user = User(**user_json)
+        # Add user to the db session
         db.session.add(user)
+        # Commit changes to db
         db.session.commit() 
 
         return jsonify(user_schema.dump(user)), 201
     
     except IntegrityError as e:
-        db.session.rollback()  # Rollback the transaction
+        # "rollback" = reversal set of db within transaction to undo any changes made in the current session
+        db.session.rollback()  
         print(f"Error creating user: {e}")
         return jsonify({"error": "User creation failed due to an existing user"}), 400
 
