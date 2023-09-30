@@ -137,20 +137,26 @@
 - One-to-Many(1:N) Relationships:
     - Location to Induction
         - A location can have multiple inductions required.
+        - 1 location may have several inductions sessions associated.
         - Implementing location_id as Foreign Key in the Inductions model, and referencing the tables.
+        - Allows to establish connection between specific induction and the location it is associated.
 - Many-to-Many(N:N)
     - User to Equipment
-        - Many user can look after multiple equipments
+        - Many user can look after multiple equipments  and converserly one equipment may have multiple users associated.
         - This is achieved by having user_id as the ForeignKey in the 'Equipment' model and referencing the tables.
     - User to JIRAs
         - Many user can access to multiple JIRAs.
+        - And each JIRA can have multiple users associated with it.
         - This is achieved by having user_id as Foreignkey in the 'JIRA' model and referencing the tables.
+        - This enables tracking of which users involved in which JIRAs and vice versa, facilating easier queries & data management.
     - Equipment to Part
         - Many equipment will require many parts.
         - This is achieved by having equipment_id as Foreignkey in the 'Part' model and referencing the tables.
+        - Associate each part with a specific piece of equipment, facilitating queries like finding all parts required for a specific equipment.
     - Equipment to Service
         - Many equipment will require different servicing.
         - This is achieved by having equipment_id as Foreignkey in the 'Service' model and referencing the tables.
+        - Enable the linkage of each service record to a specific piece of equipment, facilitating queries as in finding the service history for a particular equipment.
 
 
 ## R10 Describe the way tasks are allocated and tracked in your project 
